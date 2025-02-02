@@ -1,0 +1,835 @@
+[
+    {
+        "id": "7f1e1c1530fe26a8",
+        "type": "tab",
+        "label": "Waypoints",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "40ee1231c9b8c846",
+        "type": "mongodb out",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectories",
+        "collection": "Trayectories",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 460,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4bb692dd26af562d",
+        "type": "ui_table",
+        "z": "7f1e1c1530fe26a8",
+        "group": "211eaf37f43c055a",
+        "name": "Path Table",
+        "order": 1,
+        "width": 6,
+        "height": 8,
+        "columns": [
+            {
+                "field": "PathName",
+                "title": "PathName",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "x",
+                "title": "x",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "y",
+                "title": "y",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 1190,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "36c7b318888bc5d0",
+        "type": "mongodb in",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectoriFinder",
+        "collection": "Trayectories",
+        "operation": "find",
+        "x": 990,
+        "y": 120,
+        "wires": [
+            [
+                "4bb692dd26af562d",
+                "9946a586c9df3945"
+            ]
+        ]
+    },
+    {
+        "id": "a3896ab624d9ce93",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "SearchAll",
+        "func": "msg.payload = {};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 120,
+        "wires": [
+            [
+                "36c7b318888bc5d0"
+            ]
+        ]
+    },
+    {
+        "id": "9e5b7a2209718c06",
+        "type": "ui_form",
+        "z": "7f1e1c1530fe26a8",
+        "name": "Edit a path",
+        "label": "Edit a path",
+        "group": "28ea652dee020e14",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Trayectoryname",
+                "value": "PathName",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Waypoint",
+                "value": "Waypoints",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Remove",
+                "value": "Remove",
+                "type": "checkbox",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "PathName": "",
+            "Waypoints": "",
+            "Remove": false
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 90,
+        "y": 260,
+        "wires": [
+            [
+                "4228b566c607ac19"
+            ]
+        ]
+    },
+    {
+        "id": "6dc16c70b792e16c",
+        "type": "mongodb out",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "RemoveTrayectory",
+        "collection": "Trayectories",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 670,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "4228b566c607ac19",
+        "type": "switch",
+        "z": "7f1e1c1530fe26a8",
+        "name": "DeleteSwitch",
+        "property": "payload.Remove",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "176249c003fc50a8"
+            ],
+            [
+                "337fac18f0565095"
+            ]
+        ]
+    },
+    {
+        "id": "176249c003fc50a8",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "SearchPath",
+        "func": "msg.payload = { \"PathName\": msg.payload.PathName };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "6dc16c70b792e16c",
+                "a3896ab624d9ce93"
+            ]
+        ]
+    },
+    {
+        "id": "624e62f6ce9e110c",
+        "type": "ui_form",
+        "z": "7f1e1c1530fe26a8",
+        "name": "Create a Path",
+        "label": "Create a Path",
+        "group": "28ea652dee020e14",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Trayectoryname",
+                "value": "PathName",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Waypoint",
+                "value": "Waypoints",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "PathName": "",
+            "Waypoints": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "e3468f34ec49e939"
+            ]
+        ]
+    },
+    {
+        "id": "337fac18f0565095",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "Safe Waypoints",
+        "func": "msg.newwaypoint = msg.payload.Waypoints;\nmsg.payload = { \"PathName\": msg.payload.PathName };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 280,
+        "wires": [
+            [
+                "334ce8dfaeb47520"
+            ]
+        ]
+    },
+    {
+        "id": "334ce8dfaeb47520",
+        "type": "mongodb in",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectoriFinder",
+        "collection": "Trayectories",
+        "operation": "find",
+        "x": 670,
+        "y": 280,
+        "wires": [
+            [
+                "fca02e818882dc94"
+            ]
+        ]
+    },
+    {
+        "id": "c60c3b219ed5d08c",
+        "type": "mongodb out",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectories",
+        "collection": "Trayectories",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 1080,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "fca02e818882dc94",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "ApplyWaypoints",
+        "func": "msg.payload = msg.payload[0];\nmsg.payload.Waypoints = msg.newwaypoint;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 280,
+        "wires": [
+            [
+                "c60c3b219ed5d08c",
+                "a3896ab624d9ce93"
+            ]
+        ]
+    },
+    {
+        "id": "2757f1409ae61125",
+        "type": "ui_dropdown",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "b1351722e09b1170",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 1380,
+        "y": 180,
+        "wires": [
+            [
+                "7a716d4262c1c323"
+            ]
+        ]
+    },
+    {
+        "id": "9946a586c9df3945",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "Extract All Paths",
+        "func": "\nvar inputArray = msg.payload; // Supongamos que msg.payload contiene el array de entrada\n\n// Verificar si el payload es un array\nif (Array.isArray(inputArray)) {\n    var optionsArray = []; // Array para las opciones\n\n    // Iterar sobre cada elemento del array de entrada\n    inputArray.forEach(function (item) {\n        // Verificar si el elemento actual es un objeto\n        if (typeof item === 'object' && item !== null && item.hasOwnProperty('PathName')) {\n            // Agregar el valor del apartado 'PathName' al array de opciones\n            optionsArray.push(item.PathName);\n        }\n    });\n\n    // Crear el mensaje de salida con las opciones formateadas\n    msg.options = optionsArray;\n    return msg;\n} else {\n    // Si el payload no es un array, devolver un mensaje de error\n    return { payload: \"El payload no es un array.\" };\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 180,
+        "wires": [
+            [
+                "2757f1409ae61125"
+            ]
+        ]
+    },
+    {
+        "id": "e3468f34ec49e939",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "X/Y",
+        "func": "if (!msg.payload) {\n    node.error(\"No se proporcionó ningún payload.\");\n    return null;\n}\n\n// Verificamos si el payload es un objeto\nif (typeof msg.payload !== 'object') {\n    node.error(\"El payload no es un objeto.\");\n    return null;\n}\n\n// Verificamos si el payload tiene el apartado 'Waypoints'\nif (!msg.payload.Waypoints) {\n    node.error(\"El payload no contiene 'Waypoints'.\");\n    return null;\n}\n\n// Obtenemos las coordenadas desde el apartado 'Waypoints' del mensaje de entrada\nvar coordenadas = msg.payload.Waypoints;\n\n// Verificamos si las coordenadas son un string\nif (typeof coordenadas !== 'string') {\n    node.error(\"Las coordenadas no son un string.\");\n    return null;\n}\n\n// Verificamos si el formato de las coordenadas es correcto\n//if (!/^(\\d+,\\d+;)*\\d+,\\d+$/.test(coordenadas)) {\n//    node.error(\"El formato de las coordenadas no es válido. Debe ser 'x1,y1;x2,y2;x3,y3;...'\");\n//    return null;\n//}\n\n// Creamos dos nuevos arrays para las x y las y\nvar xArray = [];\nvar yArray = [];\n\n// Dividimos las coordenadas en pares de x e y\nvar pares = coordenadas.split(';');\n\n// Iteramos sobre cada par de coordenadas\npares.forEach(function (par) {\n    // Dividimos el par en x e y\n    var coordenada = par.split(',');\n    var x = parseFloat(coordenada[0]);\n    var y = parseFloat(coordenada[1]);\n\n    // Agregamos las x al array de x y las y al array de y\n    xArray.push(x);\n    yArray.push(y);\n});\n\n// Creamos un nuevo mensaje con los dos arrays\nmsg.payload = { PathName: msg.payload.PathName, x: xArray, y: yArray };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "40ee1231c9b8c846",
+                "469082d32214b705"
+            ]
+        ]
+    },
+    {
+        "id": "469082d32214b705",
+        "type": "delay",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 80,
+        "wires": [
+            [
+                "a3896ab624d9ce93"
+            ]
+        ]
+    },
+    {
+        "id": "6c6ec4ee503040c8",
+        "type": "OpcUa-Item",
+        "z": "7f1e1c1530fe26a8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.NextX",
+        "datatype": "Float",
+        "value": "",
+        "name": "NextX",
+        "x": 2110,
+        "y": 280,
+        "wires": [
+            [
+                "4839e4743040de68"
+            ]
+        ]
+    },
+    {
+        "id": "4839e4743040de68",
+        "type": "OpcUa-Client",
+        "z": "7f1e1c1530fe26a8",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 2260,
+        "y": 280,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "429df28db9cf6795",
+        "type": "OpcUa-Item",
+        "z": "7f1e1c1530fe26a8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.NextY",
+        "datatype": "Float",
+        "value": "",
+        "name": "NextY",
+        "x": 2110,
+        "y": 360,
+        "wires": [
+            [
+                "e64d6b7f59ec80cc"
+            ]
+        ]
+    },
+    {
+        "id": "e64d6b7f59ec80cc",
+        "type": "OpcUa-Client",
+        "z": "7f1e1c1530fe26a8",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 2260,
+        "y": 360,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8c5383f1a3586554",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "function 2",
+        "func": "global.set(\"NextX\", msg.payload[0].x);\nglobal.set(\"NextY\", msg.payload[0].y);\nglobal.set(\"i\", 0);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1960,
+        "y": 180,
+        "wires": [
+            [
+                "ab7fdc4c4d75e14f"
+            ]
+        ]
+    },
+    {
+        "id": "7a716d4262c1c323",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "TakeName",
+        "func": "msg.payload = { \"PathName\": msg.payload };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1570,
+        "y": 180,
+        "wires": [
+            [
+                "52c43baa9389622d"
+            ]
+        ]
+    },
+    {
+        "id": "52c43baa9389622d",
+        "type": "mongodb in",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectoriFinder",
+        "collection": "Trayectories",
+        "operation": "find",
+        "x": 1770,
+        "y": 180,
+        "wires": [
+            [
+                "8c5383f1a3586554"
+            ]
+        ]
+    },
+    {
+        "id": "ab7fdc4c4d75e14f",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "MoveToNextPoint",
+        "func": "var NextX = global.get(\"NextX\");\nvar NextY = global.get(\"NextY\");\nvar i = global.get(\"i\");\n\nmsg.NextX = NextX[i];\nmsg.NextY = NextY[i];\ni++;\nglobal.set(\"i\", i);\n\nreturn { payload: { nextx: msg.NextX, nexty: msg.NextY } };\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1730,
+        "y": 320,
+        "wires": [
+            [
+                "2a1e49fb4ec37f64",
+                "4dcbfd71543c9d95"
+            ]
+        ]
+    },
+    {
+        "id": "2a1e49fb4ec37f64",
+        "type": "change",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.nextx",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 280,
+        "wires": [
+            [
+                "6c6ec4ee503040c8"
+            ]
+        ]
+    },
+    {
+        "id": "4dcbfd71543c9d95",
+        "type": "change",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.nexty",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 360,
+        "wires": [
+            [
+                "429df28db9cf6795"
+            ]
+        ]
+    },
+    {
+        "id": "a7b7b6d23c358c7e",
+        "type": "ui_ui_control",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "events": "change",
+        "x": 640,
+        "y": 40,
+        "wires": [
+            [
+                "a3896ab624d9ce93"
+            ]
+        ]
+    },
+    {
+        "id": "2bb23ef18c77e7dc",
+        "type": "OpcUa-Item",
+        "z": "7f1e1c1530fe26a8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.NextData",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "NextData",
+        "x": 1260,
+        "y": 320,
+        "wires": [
+            [
+                "4c9ddab9482f6a29"
+            ]
+        ]
+    },
+    {
+        "id": "4c9ddab9482f6a29",
+        "type": "OpcUa-Client",
+        "z": "7f1e1c1530fe26a8",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": "1",
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 1420,
+        "y": 320,
+        "wires": [
+            [
+                "922d246652ca84b5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b18a896748b265c7",
+        "type": "inject",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1110,
+        "y": 340,
+        "wires": [
+            [
+                "2bb23ef18c77e7dc"
+            ]
+        ]
+    },
+    {
+        "id": "922d246652ca84b5",
+        "type": "switch",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1550,
+        "y": 380,
+        "wires": [
+            [
+                "ab7fdc4c4d75e14f"
+            ]
+        ]
+    },
+    {
+        "id": "bd51550421c01d52",
+        "type": "mongodb",
+        "hostname": "mongodb",
+        "topology": "direct",
+        "connectOptions": "",
+        "port": "27017",
+        "db": "AGV",
+        "name": ""
+    },
+    {
+        "id": "211eaf37f43c055a",
+        "type": "ui_group",
+        "name": "Available Path",
+        "tab": "03cff3a24e146d29",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "28ea652dee020e14",
+        "type": "ui_group",
+        "name": "New Path",
+        "tab": "03cff3a24e146d29",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b1351722e09b1170",
+        "type": "ui_group",
+        "name": "Follow Path",
+        "tab": "03cff3a24e146d29",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "570721bbfadb744b",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://192.168.0.102:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "03cff3a24e146d29",
+        "type": "ui_tab",
+        "name": "Waypoints",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,2588 @@
+[
+    {
+        "id": "78a04b20ecd1bf51",
+        "type": "tab",
+        "label": "Velocity Controlls",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ed34b63.0ee70c8",
+        "type": "tab",
+        "label": "Odometry",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7370796f27cee618",
+        "type": "tab",
+        "label": "Sensors",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7f1e1c1530fe26a8",
+        "type": "tab",
+        "label": "Waypoints",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "53b0bd528f3f589a",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "in": [],
+        "out": []
+    },
+    {
+        "id": "570721bbfadb744b",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://192.168.0.102:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "57230b28165aefd1",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c9da17d420082d9b",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "4b18d78de146df41",
+        "type": "ui_group",
+        "name": "Controll",
+        "tab": "57230b28165aefd1",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e3337cc83d42248b",
+        "type": "ui_group",
+        "name": "Controll Values",
+        "tab": "57230b28165aefd1",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b1eca7233874dd82",
+        "type": "ui_group",
+        "name": "Position",
+        "tab": "194a07bc7a1ad9a4",
+        "order": 1,
+        "disp": true,
+        "width": 10,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "bd51550421c01d52",
+        "type": "mongodb",
+        "hostname": "mongodb",
+        "topology": "direct",
+        "connectOptions": "",
+        "port": "27017",
+        "db": "AGV",
+        "name": ""
+    },
+    {
+        "id": "4b8e505a937f3634",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "iot.ac.uma.es",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f605fa69.8f5008",
+        "type": "mongodb",
+        "hostname": "mongodb",
+        "connectOptions": "",
+        "port": "27017",
+        "db": "ejercicio",
+        "name": ""
+    },
+    {
+        "id": "03cff3a24e146d29",
+        "type": "ui_tab",
+        "name": "Waypoints",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "28ea652dee020e14",
+        "type": "ui_group",
+        "name": "New Path",
+        "tab": "03cff3a24e146d29",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b1351722e09b1170",
+        "type": "ui_group",
+        "name": "Follow Path",
+        "tab": "03cff3a24e146d29",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "194a07bc7a1ad9a4",
+        "type": "ui_tab",
+        "name": "Position",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "e6443906061477a8",
+        "type": "ui_group",
+        "name": "Coordinates",
+        "tab": "194a07bc7a1ad9a4",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "211eaf37f43c055a",
+        "type": "ui_group",
+        "name": "Available Path",
+        "tab": "03cff3a24e146d29",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "502918ee43b77c9b",
+        "type": "ui_dropdown",
+        "z": "53b0bd528f3f589a",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "4b18d78de146df41",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 200,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e7e0ab74ffbcc1f",
+        "type": "OpcUa-Item",
+        "z": "78a04b20ecd1bf51",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.GVL.LinearSpeed",
+        "datatype": "Float",
+        "value": "",
+        "name": "LinearVelocity",
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "0565e22d97ba1c9e",
+                "cf40a15fa62b1c97"
+            ]
+        ]
+    },
+    {
+        "id": "0565e22d97ba1c9e",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 520,
+        "y": 260,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7fa66b0c9ff93538",
+        "type": "ui_slider",
+        "z": "78a04b20ecd1bf51",
+        "name": "Linear Velocity",
+        "label": "Linear Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "465f30a637530523",
+                "5bea2ce3b60a5c27",
+                "3e7e0ab74ffbcc1f"
+            ]
+        ]
+    },
+    {
+        "id": "760c3d8e4223c173",
+        "type": "ui_gauge",
+        "z": "78a04b20ecd1bf51",
+        "name": "Linear Velocity [m/s]",
+        "group": "e3337cc83d42248b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Linear Velocity",
+        "label": "[m/s]",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "791b1db8d2f1381e",
+        "type": "OpcUa-Item",
+        "z": "78a04b20ecd1bf51",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.GVL.ON",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "ON",
+        "x": 330,
+        "y": 40,
+        "wires": [
+            [
+                "bdd42d97a31a1582",
+                "27252599a6209dd2"
+            ]
+        ]
+    },
+    {
+        "id": "bdd42d97a31a1582",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 520,
+        "y": 40,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5a0d6c4934995ce9",
+        "type": "OpcUa-Item",
+        "z": "78a04b20ecd1bf51",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.GVL.AngularSpeed",
+        "datatype": "Float",
+        "value": "",
+        "name": "AngularVelocity",
+        "x": 360,
+        "y": 400,
+        "wires": [
+            [
+                "ebc55b717f01fca4",
+                "353096522f0f5273"
+            ]
+        ]
+    },
+    {
+        "id": "ebc55b717f01fca4",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 520,
+        "y": 400,
+        "wires": [
+            [
+                "76978234a9237f53"
+            ],
+            [
+                "76978234a9237f53"
+            ]
+        ]
+    },
+    {
+        "id": "7a2dfd7e4ab36120",
+        "type": "ui_slider",
+        "z": "78a04b20ecd1bf51",
+        "name": "Angular Velocity",
+        "label": "Angular Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "5a0d6c4934995ce9",
+                "f761a54ac734f790"
+            ]
+        ]
+    },
+    {
+        "id": "353096522f0f5273",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 520,
+        "y": 440,
+        "wires": [
+            [
+                "28bc208070d65015",
+                "76978234a9237f53"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "28bc208070d65015",
+        "type": "ui_gauge",
+        "z": "78a04b20ecd1bf51",
+        "name": "Angular Velocity [º/s]",
+        "group": "e3337cc83d42248b",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Angular Velocity ",
+        "label": "[º/s]",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 720,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "3328b66ceb0f6f8b",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 520,
+        "y": 80,
+        "wires": [
+            [
+                "55f7d6c653539c64",
+                "954f8f8b12646c81"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "55f7d6c653539c64",
+        "type": "ui_led",
+        "z": "78a04b20ecd1bf51",
+        "order": 1,
+        "group": "e3337cc83d42248b",
+        "width": 0,
+        "height": 0,
+        "label": "Off/On",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Off/On",
+        "x": 710,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "483e5fac0f9d754b",
+        "type": "ui_switch",
+        "z": "78a04b20ecd1bf51",
+        "name": "Off/On Switch",
+        "label": "Off/On Switch",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 140,
+        "y": 40,
+        "wires": [
+            [
+                "791b1db8d2f1381e",
+                "5c7689e9851717e4"
+            ]
+        ]
+    },
+    {
+        "id": "cf40a15fa62b1c97",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "760c3d8e4223c173"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "465f30a637530523",
+        "type": "ui_numeric",
+        "z": "78a04b20ecd1bf51",
+        "name": "Select Linear Velocity",
+        "label": "Select Linear Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "5bea2ce3b60a5c27",
+                "7fa66b0c9ff93538",
+                "3e7e0ab74ffbcc1f"
+            ]
+        ]
+    },
+    {
+        "id": "5bea2ce3b60a5c27",
+        "type": "ui_text_input",
+        "z": "78a04b20ecd1bf51",
+        "name": "Insert Linear Velocity",
+        "label": "Insert Linear Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "465f30a637530523",
+                "7fa66b0c9ff93538",
+                "3e7e0ab74ffbcc1f"
+            ]
+        ]
+    },
+    {
+        "id": "4d1538f516574064",
+        "type": "ui_numeric",
+        "z": "78a04b20ecd1bf51",
+        "name": "Select Angular Velocity",
+        "label": "Select Angular Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "7a2dfd7e4ab36120"
+            ]
+        ]
+    },
+    {
+        "id": "f761a54ac734f790",
+        "type": "ui_text_input",
+        "z": "78a04b20ecd1bf51",
+        "name": "Insert Angular Velocity",
+        "label": "Insert Angular Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "4d1538f516574064"
+            ]
+        ]
+    },
+    {
+        "id": "5c7689e9851717e4",
+        "type": "change",
+        "z": "78a04b20ecd1bf51",
+        "name": "ON global",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ON",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "27252599a6209dd2",
+        "type": "switch",
+        "z": "78a04b20ecd1bf51",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 160,
+        "wires": [
+            [
+                "3328b66ceb0f6f8b"
+            ],
+            [
+                "e5a4c5532103a9e8"
+            ]
+        ]
+    },
+    {
+        "id": "e5a4c5532103a9e8",
+        "type": "change",
+        "z": "78a04b20ecd1bf51",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 160,
+        "wires": [
+            [
+                "3328b66ceb0f6f8b"
+            ]
+        ]
+    },
+    {
+        "id": "954f8f8b12646c81",
+        "type": "debug",
+        "z": "78a04b20ecd1bf51",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "76978234a9237f53",
+        "type": "debug",
+        "z": "78a04b20ecd1bf51",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "7118e1f3.a55ad",
+        "type": "function",
+        "z": "ed34b63.0ee70c8",
+        "name": "Build two cumulating random datasets",
+        "func": "// this is where you define the legend for \n// the datasets\nvar title = \"Position\";\nvar legend1 = \"InPath\";\nvar legend2 = \"OutPath\";\n// variables to be used to \nvar i, x, y, r, data1;\n// initialise the counter to 0 if it doesn't exist already\nvar data1 = flow.get('data1') ||'';\nvar data2 = flow.get('data2') ||'';\n\nvar count = flow.get('count')||0;\ncount += 1;\nif (msg.reset == true) {\n    count = 1;\n    data1 = '{x: 0,  y: 0,  r: 1},'; // Force the size of the\n    data2 = '{x: 0,  y: 0,  r: 0},'; // Force the size of the\n} \n// store the value back\nflow.set('count',count);\n// make it part of the outgoing msg object\nmsg.count = count;\n\n\nx = msg.x;\ny = msg.y;\nr = 10;\n\nif (global.get(\"Detecting\"))\n{\n    data1 += \"{x: \" + x + \", y: \" + y + \", r: \" + 0.1 + \"},\";\n    data2 += \"{x: \" + x + \", y: \" + y + \", r: \" + 7.5 + \"},\";\n}else\n{\n    data1 += \"{x: \" + x + \", y: \" + y + \", r: \" + 5 + \"},\";\n    data2 += \"{x: \" + x + \", y: \" + y + \", r: \" + 0.1 + \"},\";\n}\n\n\n//node.warn(\"db2=\"+data1);\n// this line removes the last comma to end the dataset\ndata1 = data1.replace(/^(.*),(.*?)$/, '$1')\ndata2 = data2.replace(/^(.*),(.*?)$/, '$1')\n\n// Now we build msg.payload\nmsg.payload = {\n    \"title\": title,\n    \"legend1\": legend1,\n    \"data1\": data1,\n    \"legend2\": legend2,\n    \"data2\": data2\n};\ndata1 += \",\";\ndata2 += \",\";\n\nflow.set([\"data1\", \"data2\"], [data1, data2]);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1450,
+        "y": 240,
+        "wires": [
+            [
+                "aeee9b3a.3c13a"
+            ]
+        ]
+    },
+    {
+        "id": "52f5764.47eec88",
+        "type": "inject",
+        "z": "ed34b63.0ee70c8",
+        "name": "Inject every second",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.25",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "141d3c2002d4c40f"
+            ]
+        ]
+    },
+    {
+        "id": "aeee9b3a.3c13a",
+        "type": "template",
+        "z": "ed34b63.0ee70c8",
+        "name": "Create the msg.template to use",
+        "field": "template",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<canvas id=\"bubble-chart\" width=\"1\" height=\"1\" style=\"border:1px solid #000000;\"></canvas>\n\n<script>\n  new Chart(document.getElementById(\"bubble-chart\"), {\n    type: 'bubble',\n    data: {\n      labels: \"label\",\n      datasets: [\n        {\n          label: \"{{{payload.legend1}}}\",\n          backgroundColor: \"rgba(65, 72, 255, 1.0000)\",\n          borderColor: \"#000\",\n          data: [\n            {{{payload.data1}}}\n\n          ]\n        }, {\n          label: [\"{{{payload.legend2}}}\"], \n          backgroundColor: \"rgba(255, 45, 36, 1.0000)\",\n          borderColor: \"#000\",\n          data: [\n              {{{payload.data2}}}\n\t\t  ]\n        }\n      ]\n    },\n    options: {\n        animation: false,\n        legend: {\n            display: true,\n            labels: {\n                fontColor: 'rgb(255, 99, 132)'\n            }\n        },\n    title: {\n        display: true,\n        text: '{{{payload.title}}}'\n      }, scales: {\n        yAxes: [{ \n          scaleLabel: {\n            display: true,\n            labelString: \"yAxes\"\n          }\n        }],\n        xAxes: [{ \n          scaleLabel: {\n            display: true,\n            labelString: \"xAxes\"\n          }\n        }]\n      }\n    }\n});\n\n</script>",
+        "output": "str",
+        "x": 1450,
+        "y": 300,
+        "wires": [
+            [
+                "90a482c4.75a6f"
+            ]
+        ]
+    },
+    {
+        "id": "90a482c4.75a6f",
+        "type": "ui_template",
+        "z": "ed34b63.0ee70c8",
+        "group": "b1eca7233874dd82",
+        "name": "Position Graph",
+        "order": 1,
+        "width": 10,
+        "height": 10,
+        "format": "this will be ignored",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1440,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26161552ce0a1789",
+        "type": "OpcUa-Item",
+        "z": "ed34b63.0ee70c8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.x",
+        "datatype": "Float Array",
+        "value": "",
+        "name": "X",
+        "x": 490,
+        "y": 160,
+        "wires": [
+            [
+                "d050966be1b062f4"
+            ]
+        ]
+    },
+    {
+        "id": "d050966be1b062f4",
+        "type": "OpcUa-Client",
+        "z": "ed34b63.0ee70c8",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 640,
+        "y": 160,
+        "wires": [
+            [
+                "ed39dd0cdc788ff0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "682d062c41d8f3b3",
+        "type": "OpcUa-Item",
+        "z": "ed34b63.0ee70c8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.y",
+        "datatype": "Float Array",
+        "value": "",
+        "name": "Y",
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "7b5ddb0285f4e0b4"
+            ]
+        ]
+    },
+    {
+        "id": "7b5ddb0285f4e0b4",
+        "type": "OpcUa-Client",
+        "z": "ed34b63.0ee70c8",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "ee0127772cca95b0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7626a2a544fa0509",
+        "type": "ui_button",
+        "z": "ed34b63.0ee70c8",
+        "name": "Reset Graph",
+        "group": "e6443906061477a8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset Graph",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1010,
+        "y": 200,
+        "wires": [
+            [
+                "c79f5550b74fe9a6"
+            ]
+        ]
+    },
+    {
+        "id": "c79f5550b74fe9a6",
+        "type": "change",
+        "z": "ed34b63.0ee70c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1180,
+        "y": 200,
+        "wires": [
+            [
+                "7118e1f3.a55ad"
+            ]
+        ]
+    },
+    {
+        "id": "e4a512af3423db1c",
+        "type": "ui_text",
+        "z": "ed34b63.0ee70c8",
+        "group": "e6443906061477a8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "x-coordinated",
+        "format": "{{msg.x}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1060,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2182168c78ea710a",
+        "type": "ui_text",
+        "z": "ed34b63.0ee70c8",
+        "group": "e6443906061477a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "y-coordinated",
+        "format": "{{msg.y}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1060,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "ed39dd0cdc788ff0",
+        "type": "function",
+        "z": "ed34b63.0ee70c8",
+        "name": "Adaptar",
+        "func": "var number = Number(msg.payload); // Convertir a número\nif (!isNaN(number)) {\n    msg.x = Number(number.toFixed(3)) ; // Redondear a 3 decimales\n    global.set(\"X\", msg.x);\n} else {\n    // Manejar el caso en el que msg.payload no sea un número válido\n    // Por ejemplo, asignar un valor por defecto o mostrar un mensaje de error\n    msg.x = \"NaN\"; // Por ejemplo, asignamos \"NaN\" si no es un número válido\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 160,
+        "wires": [
+            [
+                "682d062c41d8f3b3",
+                "e4a512af3423db1c"
+            ]
+        ]
+    },
+    {
+        "id": "ee0127772cca95b0",
+        "type": "function",
+        "z": "ed34b63.0ee70c8",
+        "name": "Adaptar",
+        "func": "var number = parseFloat(msg.payload); // Convertir a número\nif (!isNaN(number)) {\n    msg.y = number.toFixed(3); // Redondear a 3 decimales\n    global.set(\"Y\", msg.y);\n} else {\n    // Manejar el caso en el que msg.payload no sea un número válido\n    // Por ejemplo, asignar un valor por defecto o mostrar un mensaje de error\n    msg.y = \"NaN\"; // Por ejemplo, asignamos \"NaN\" si no es un número válido\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 200,
+        "wires": [
+            [
+                "41325bca58f1a858",
+                "2182168c78ea710a"
+            ]
+        ]
+    },
+    {
+        "id": "41325bca58f1a858",
+        "type": "OpcUa-Item",
+        "z": "ed34b63.0ee70c8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.Alpha",
+        "datatype": "Float Array",
+        "value": "",
+        "name": "Alpha",
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "d291728e09b075b2"
+            ]
+        ]
+    },
+    {
+        "id": "d291728e09b075b2",
+        "type": "OpcUa-Client",
+        "z": "ed34b63.0ee70c8",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 640,
+        "y": 240,
+        "wires": [
+            [
+                "24e2d7f812d88c26"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "24e2d7f812d88c26",
+        "type": "function",
+        "z": "ed34b63.0ee70c8",
+        "name": "Adaptar",
+        "func": "var number = parseFloat(msg.payload); // Convertir a número\nif (!isNaN(number)) {\n    msg.Alpha = number; // Redondear a 3 decimales\n    msg.Alpha = msg.Alpha.toFixed(3);\n} else {\n    // Manejar el caso en el que msg.payload no sea un número válido\n    // Por ejemplo, asignar un valor por defecto o mostrar un mensaje de error\n    msg.Alpha = \"NaN\"; // Por ejemplo, asignamos \"NaN\" si no es un número válido\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 240,
+        "wires": [
+            [
+                "7118e1f3.a55ad",
+                "5e7a05cc22e3fbd4"
+            ]
+        ]
+    },
+    {
+        "id": "5e7a05cc22e3fbd4",
+        "type": "ui_text",
+        "z": "ed34b63.0ee70c8",
+        "group": "e6443906061477a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Alpha-coordinated",
+        "format": "{{msg.Alpha}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1070,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "141d3c2002d4c40f",
+        "type": "switch",
+        "z": "ed34b63.0ee70c8",
+        "name": "",
+        "property": "ON",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "26161552ce0a1789"
+            ]
+        ]
+    },
+    {
+        "id": "fd0270b211744407",
+        "type": "ui_button",
+        "z": "ed34b63.0ee70c8",
+        "name": "Actual Position",
+        "group": "e6443906061477a8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Actual Position",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "str",
+        "x": 300,
+        "y": 160,
+        "wires": [
+            [
+                "26161552ce0a1789"
+            ]
+        ]
+    },
+    {
+        "id": "d5970851017adc96",
+        "type": "ui_ui_control",
+        "z": "ed34b63.0ee70c8",
+        "name": "",
+        "events": "change",
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "f9dff8cec8a12859"
+            ]
+        ]
+    },
+    {
+        "id": "f9dff8cec8a12859",
+        "type": "delay",
+        "z": "ed34b63.0ee70c8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0.05",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 120,
+        "wires": [
+            [
+                "26161552ce0a1789"
+            ]
+        ]
+    },
+    {
+        "id": "230508e999a8b67c",
+        "type": "OpcUa-Item",
+        "z": "7370796f27cee618",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.SWL",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Warning Sensor Left",
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "a3a8d7cc8f7cb4ea"
+            ]
+        ]
+    },
+    {
+        "id": "a3a8d7cc8f7cb4ea",
+        "type": "OpcUa-Client",
+        "z": "7370796f27cee618",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "c641ea3d63437e54",
+                "820814710d1712d7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "77a4bc95ee024105",
+        "type": "OpcUa-Item",
+        "z": "7370796f27cee618",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.SWR",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Warning Sensor Rigth",
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "457ccd2b44a9e1a2"
+            ]
+        ]
+    },
+    {
+        "id": "457ccd2b44a9e1a2",
+        "type": "OpcUa-Client",
+        "z": "7370796f27cee618",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "a530fad592b1b3d2",
+                "41777ec9d9df02ed"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0473b26b6b45f382",
+        "type": "OpcUa-Item",
+        "z": "7370796f27cee618",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.SD",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Danger Sensor",
+        "x": 360,
+        "y": 360,
+        "wires": [
+            [
+                "c0de68737411775c"
+            ]
+        ]
+    },
+    {
+        "id": "c0de68737411775c",
+        "type": "OpcUa-Client",
+        "z": "7370796f27cee618",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 640,
+        "y": 360,
+        "wires": [
+            [
+                "6d3d273f340d5a55",
+                "b1b5146735df6cb5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "25e73460c2396b65",
+        "type": "inject",
+        "z": "7370796f27cee618",
+        "name": "Inject every second",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.25",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 100,
+        "y": 280,
+        "wires": [
+            [
+                "230508e999a8b67c"
+            ]
+        ]
+    },
+    {
+        "id": "c641ea3d63437e54",
+        "type": "ui_led",
+        "z": "7370796f27cee618",
+        "order": 7,
+        "group": "4b18d78de146df41",
+        "width": 0,
+        "height": 0,
+        "label": "WSL Led",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "WSL Led",
+        "x": 860,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a530fad592b1b3d2",
+        "type": "ui_led",
+        "z": "7370796f27cee618",
+        "order": 7,
+        "group": "4b18d78de146df41",
+        "width": 0,
+        "height": 0,
+        "label": "WSR Led",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "WSR Led",
+        "x": 860,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "6d3d273f340d5a55",
+        "type": "ui_led",
+        "z": "7370796f27cee618",
+        "order": 7,
+        "group": "4b18d78de146df41",
+        "width": 0,
+        "height": 0,
+        "label": "DS Led",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "DS Led",
+        "x": 860,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "6bb8f9723a28d7f8",
+        "type": "function",
+        "z": "7370796f27cee618",
+        "name": "ColorChanger",
+        "func": "// Verificar si alguna de las condiciones es verdadera\nif (msg.WSL == true || msg.WSR == true || msg.DS == true) {\n    // Establecer Detecting a true\n    global.set(\"Detecting\", true);\n    // Reiniciar el temporizador si ya está activo\n    if (global.get(\"timerActive\")) {\n        clearTimeout(global.get(\"detectTimer\"));\n    }\n    // Establecer temporizador para volver a false después de 5 segundos\n    global.set(\"timerActive\", true);\n    global.set(\"detectTimer\", setTimeout(function () {\n        global.set(\"Detecting\", false);\n        global.set(\"timerActive\", false);\n    }, 4000));\n} else {\n    // Si no se cumple la condición, establecer Detecting a false\n    if (!global.get(\"timerActive\")) {\n        global.set(\"Detecting\", false);\n    }\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "820814710d1712d7",
+        "type": "change",
+        "z": "7370796f27cee618",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "WSL",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 180,
+        "wires": [
+            [
+                "77a4bc95ee024105"
+            ]
+        ]
+    },
+    {
+        "id": "41777ec9d9df02ed",
+        "type": "change",
+        "z": "7370796f27cee618",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "WSR",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 260,
+        "wires": [
+            [
+                "0473b26b6b45f382"
+            ]
+        ]
+    },
+    {
+        "id": "b1b5146735df6cb5",
+        "type": "change",
+        "z": "7370796f27cee618",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "DS",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 340,
+        "wires": [
+            [
+                "6bb8f9723a28d7f8"
+            ]
+        ]
+    },
+    {
+        "id": "40ee1231c9b8c846",
+        "type": "mongodb out",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectories",
+        "collection": "Trayectories",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 460,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4bb692dd26af562d",
+        "type": "ui_table",
+        "z": "7f1e1c1530fe26a8",
+        "group": "211eaf37f43c055a",
+        "name": "Path Table",
+        "order": 1,
+        "width": 6,
+        "height": 8,
+        "columns": [
+            {
+                "field": "PathName",
+                "title": "PathName",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "x",
+                "title": "x",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "y",
+                "title": "y",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 1190,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "36c7b318888bc5d0",
+        "type": "mongodb in",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectoriFinder",
+        "collection": "Trayectories",
+        "operation": "find",
+        "x": 990,
+        "y": 120,
+        "wires": [
+            [
+                "4bb692dd26af562d",
+                "9946a586c9df3945"
+            ]
+        ]
+    },
+    {
+        "id": "a3896ab624d9ce93",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "SearchAll",
+        "func": "msg.payload = {};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 120,
+        "wires": [
+            [
+                "36c7b318888bc5d0"
+            ]
+        ]
+    },
+    {
+        "id": "9e5b7a2209718c06",
+        "type": "ui_form",
+        "z": "7f1e1c1530fe26a8",
+        "name": "Edit a path",
+        "label": "Edit a path",
+        "group": "28ea652dee020e14",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Trayectoryname",
+                "value": "PathName",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Waypoint",
+                "value": "Waypoints",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Remove",
+                "value": "Remove",
+                "type": "checkbox",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "PathName": "",
+            "Waypoints": "",
+            "Remove": false
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 90,
+        "y": 260,
+        "wires": [
+            [
+                "4228b566c607ac19"
+            ]
+        ]
+    },
+    {
+        "id": "6dc16c70b792e16c",
+        "type": "mongodb out",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "RemoveTrayectory",
+        "collection": "Trayectories",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 670,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "4228b566c607ac19",
+        "type": "switch",
+        "z": "7f1e1c1530fe26a8",
+        "name": "DeleteSwitch",
+        "property": "payload.Remove",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "176249c003fc50a8"
+            ],
+            [
+                "337fac18f0565095"
+            ]
+        ]
+    },
+    {
+        "id": "176249c003fc50a8",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "SearchPath",
+        "func": "msg.payload = { \"PathName\": msg.payload.PathName };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "6dc16c70b792e16c",
+                "a3896ab624d9ce93"
+            ]
+        ]
+    },
+    {
+        "id": "624e62f6ce9e110c",
+        "type": "ui_form",
+        "z": "7f1e1c1530fe26a8",
+        "name": "Create a Path",
+        "label": "Create a Path",
+        "group": "28ea652dee020e14",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Trayectoryname",
+                "value": "PathName",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Waypoint",
+                "value": "Waypoints",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "PathName": "",
+            "Waypoints": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "e3468f34ec49e939"
+            ]
+        ]
+    },
+    {
+        "id": "337fac18f0565095",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "Safe Waypoints",
+        "func": "msg.newwaypoint = msg.payload.Waypoints;\nmsg.payload = { \"PathName\": msg.payload.PathName };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 280,
+        "wires": [
+            [
+                "334ce8dfaeb47520"
+            ]
+        ]
+    },
+    {
+        "id": "334ce8dfaeb47520",
+        "type": "mongodb in",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectoriFinder",
+        "collection": "Trayectories",
+        "operation": "find",
+        "x": 670,
+        "y": 280,
+        "wires": [
+            [
+                "fca02e818882dc94"
+            ]
+        ]
+    },
+    {
+        "id": "c60c3b219ed5d08c",
+        "type": "mongodb out",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectories",
+        "collection": "Trayectories",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 1080,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "fca02e818882dc94",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "ApplyWaypoints",
+        "func": "msg.payload = msg.payload[0];\nmsg.payload.Waypoints = msg.newwaypoint;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 280,
+        "wires": [
+            [
+                "c60c3b219ed5d08c",
+                "a3896ab624d9ce93"
+            ]
+        ]
+    },
+    {
+        "id": "2757f1409ae61125",
+        "type": "ui_dropdown",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "b1351722e09b1170",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 1380,
+        "y": 180,
+        "wires": [
+            [
+                "7a716d4262c1c323"
+            ]
+        ]
+    },
+    {
+        "id": "9946a586c9df3945",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "Extract All Paths",
+        "func": "\nvar inputArray = msg.payload; // Supongamos que msg.payload contiene el array de entrada\n\n// Verificar si el payload es un array\nif (Array.isArray(inputArray)) {\n    var optionsArray = []; // Array para las opciones\n\n    // Iterar sobre cada elemento del array de entrada\n    inputArray.forEach(function (item) {\n        // Verificar si el elemento actual es un objeto\n        if (typeof item === 'object' && item !== null && item.hasOwnProperty('PathName')) {\n            // Agregar el valor del apartado 'PathName' al array de opciones\n            optionsArray.push(item.PathName);\n        }\n    });\n\n    // Crear el mensaje de salida con las opciones formateadas\n    msg.options = optionsArray;\n    return msg;\n} else {\n    // Si el payload no es un array, devolver un mensaje de error\n    return { payload: \"El payload no es un array.\" };\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 180,
+        "wires": [
+            [
+                "2757f1409ae61125"
+            ]
+        ]
+    },
+    {
+        "id": "e3468f34ec49e939",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "X/Y",
+        "func": "if (!msg.payload) {\n    node.error(\"No se proporcionó ningún payload.\");\n    return null;\n}\n\n// Verificamos si el payload es un objeto\nif (typeof msg.payload !== 'object') {\n    node.error(\"El payload no es un objeto.\");\n    return null;\n}\n\n// Verificamos si el payload tiene el apartado 'Waypoints'\nif (!msg.payload.Waypoints) {\n    node.error(\"El payload no contiene 'Waypoints'.\");\n    return null;\n}\n\n// Obtenemos las coordenadas desde el apartado 'Waypoints' del mensaje de entrada\nvar coordenadas = msg.payload.Waypoints;\n\n// Verificamos si las coordenadas son un string\nif (typeof coordenadas !== 'string') {\n    node.error(\"Las coordenadas no son un string.\");\n    return null;\n}\n\n// Verificamos si el formato de las coordenadas es correcto\n//if (!/^(\\d+,\\d+;)*\\d+,\\d+$/.test(coordenadas)) {\n//    node.error(\"El formato de las coordenadas no es válido. Debe ser 'x1,y1;x2,y2;x3,y3;...'\");\n//    return null;\n//}\n\n// Creamos dos nuevos arrays para las x y las y\nvar xArray = [];\nvar yArray = [];\n\n// Dividimos las coordenadas en pares de x e y\nvar pares = coordenadas.split(';');\n\n// Iteramos sobre cada par de coordenadas\npares.forEach(function (par) {\n    // Dividimos el par en x e y\n    var coordenada = par.split(',');\n    var x = parseFloat(coordenada[0]);\n    var y = parseFloat(coordenada[1]);\n\n    // Agregamos las x al array de x y las y al array de y\n    xArray.push(x);\n    yArray.push(y);\n});\n\n// Creamos un nuevo mensaje con los dos arrays\nmsg.payload = { PathName: msg.payload.PathName, x: xArray, y: yArray };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "40ee1231c9b8c846",
+                "469082d32214b705"
+            ]
+        ]
+    },
+    {
+        "id": "469082d32214b705",
+        "type": "delay",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 80,
+        "wires": [
+            [
+                "a3896ab624d9ce93"
+            ]
+        ]
+    },
+    {
+        "id": "6c6ec4ee503040c8",
+        "type": "OpcUa-Item",
+        "z": "7f1e1c1530fe26a8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.NextX",
+        "datatype": "Float",
+        "value": "",
+        "name": "NextX",
+        "x": 2110,
+        "y": 280,
+        "wires": [
+            [
+                "4839e4743040de68"
+            ]
+        ]
+    },
+    {
+        "id": "4839e4743040de68",
+        "type": "OpcUa-Client",
+        "z": "7f1e1c1530fe26a8",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 2260,
+        "y": 280,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "429df28db9cf6795",
+        "type": "OpcUa-Item",
+        "z": "7f1e1c1530fe26a8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.NextY",
+        "datatype": "Float",
+        "value": "",
+        "name": "NextY",
+        "x": 2110,
+        "y": 360,
+        "wires": [
+            [
+                "e64d6b7f59ec80cc"
+            ]
+        ]
+    },
+    {
+        "id": "e64d6b7f59ec80cc",
+        "type": "OpcUa-Client",
+        "z": "7f1e1c1530fe26a8",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 2260,
+        "y": 360,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8c5383f1a3586554",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "function 2",
+        "func": "global.set(\"NextX\", msg.payload[0].x);\nglobal.set(\"NextY\", msg.payload[0].y);\nglobal.set(\"i\", 0);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1960,
+        "y": 180,
+        "wires": [
+            [
+                "ab7fdc4c4d75e14f"
+            ]
+        ]
+    },
+    {
+        "id": "7a716d4262c1c323",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "TakeName",
+        "func": "msg.payload = { \"PathName\": msg.payload };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1570,
+        "y": 180,
+        "wires": [
+            [
+                "52c43baa9389622d"
+            ]
+        ]
+    },
+    {
+        "id": "52c43baa9389622d",
+        "type": "mongodb in",
+        "z": "7f1e1c1530fe26a8",
+        "mongodb": "bd51550421c01d52",
+        "name": "DBTrayectoriFinder",
+        "collection": "Trayectories",
+        "operation": "find",
+        "x": 1770,
+        "y": 180,
+        "wires": [
+            [
+                "8c5383f1a3586554"
+            ]
+        ]
+    },
+    {
+        "id": "ab7fdc4c4d75e14f",
+        "type": "function",
+        "z": "7f1e1c1530fe26a8",
+        "name": "MoveToNextPoint",
+        "func": "var NextX = global.get(\"NextX\");\nvar NextY = global.get(\"NextY\");\nvar i = global.get(\"i\");\n\nmsg.NextX = NextX[i];\nmsg.NextY = NextY[i];\ni++;\nglobal.set(\"i\", i);\n\nreturn { payload: { nextx: msg.NextX, nexty: msg.NextY } };\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1730,
+        "y": 320,
+        "wires": [
+            [
+                "2a1e49fb4ec37f64",
+                "4dcbfd71543c9d95"
+            ]
+        ]
+    },
+    {
+        "id": "2a1e49fb4ec37f64",
+        "type": "change",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.nextx",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 280,
+        "wires": [
+            [
+                "6c6ec4ee503040c8"
+            ]
+        ]
+    },
+    {
+        "id": "4dcbfd71543c9d95",
+        "type": "change",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.nexty",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 360,
+        "wires": [
+            [
+                "429df28db9cf6795"
+            ]
+        ]
+    },
+    {
+        "id": "a7b7b6d23c358c7e",
+        "type": "ui_ui_control",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "events": "change",
+        "x": 640,
+        "y": 40,
+        "wires": [
+            [
+                "a3896ab624d9ce93"
+            ]
+        ]
+    },
+    {
+        "id": "2bb23ef18c77e7dc",
+        "type": "OpcUa-Item",
+        "z": "7f1e1c1530fe26a8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.NextData",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "NextData",
+        "x": 1260,
+        "y": 320,
+        "wires": [
+            [
+                "4c9ddab9482f6a29"
+            ]
+        ]
+    },
+    {
+        "id": "4c9ddab9482f6a29",
+        "type": "OpcUa-Client",
+        "z": "7f1e1c1530fe26a8",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": "1",
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 1420,
+        "y": 320,
+        "wires": [
+            [
+                "922d246652ca84b5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b18a896748b265c7",
+        "type": "inject",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1110,
+        "y": 340,
+        "wires": [
+            [
+                "2bb23ef18c77e7dc"
+            ]
+        ]
+    },
+    {
+        "id": "922d246652ca84b5",
+        "type": "switch",
+        "z": "7f1e1c1530fe26a8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1550,
+        "y": 380,
+        "wires": [
+            [
+                "ab7fdc4c4d75e14f"
+            ]
+        ]
+    }
+]

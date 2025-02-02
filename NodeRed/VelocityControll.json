@@ -1,0 +1,692 @@
+[
+    {
+        "id": "78a04b20ecd1bf51",
+        "type": "tab",
+        "label": "Velocity Controlls",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3e7e0ab74ffbcc1f",
+        "type": "OpcUa-Item",
+        "z": "78a04b20ecd1bf51",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.GVL.LinearSpeed",
+        "datatype": "Float",
+        "value": "",
+        "name": "LinearVelocity",
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "0565e22d97ba1c9e",
+                "cf40a15fa62b1c97"
+            ]
+        ]
+    },
+    {
+        "id": "0565e22d97ba1c9e",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 520,
+        "y": 260,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7fa66b0c9ff93538",
+        "type": "ui_slider",
+        "z": "78a04b20ecd1bf51",
+        "name": "Linear Velocity",
+        "label": "Linear Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "465f30a637530523",
+                "5bea2ce3b60a5c27",
+                "3e7e0ab74ffbcc1f"
+            ]
+        ]
+    },
+    {
+        "id": "760c3d8e4223c173",
+        "type": "ui_gauge",
+        "z": "78a04b20ecd1bf51",
+        "name": "Linear Velocity [m/s]",
+        "group": "e3337cc83d42248b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Linear Velocity",
+        "label": "[m/s]",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "791b1db8d2f1381e",
+        "type": "OpcUa-Item",
+        "z": "78a04b20ecd1bf51",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.GVL.ON",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "ON",
+        "x": 330,
+        "y": 40,
+        "wires": [
+            [
+                "bdd42d97a31a1582",
+                "27252599a6209dd2"
+            ]
+        ]
+    },
+    {
+        "id": "bdd42d97a31a1582",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 520,
+        "y": 40,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5a0d6c4934995ce9",
+        "type": "OpcUa-Item",
+        "z": "78a04b20ecd1bf51",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.GVL.AngularSpeed",
+        "datatype": "Float",
+        "value": "",
+        "name": "AngularVelocity",
+        "x": 360,
+        "y": 400,
+        "wires": [
+            [
+                "ebc55b717f01fca4",
+                "353096522f0f5273"
+            ]
+        ]
+    },
+    {
+        "id": "ebc55b717f01fca4",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 520,
+        "y": 400,
+        "wires": [
+            [
+                "76978234a9237f53"
+            ],
+            [
+                "76978234a9237f53"
+            ]
+        ]
+    },
+    {
+        "id": "7a2dfd7e4ab36120",
+        "type": "ui_slider",
+        "z": "78a04b20ecd1bf51",
+        "name": "Angular Velocity",
+        "label": "Angular Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "5a0d6c4934995ce9",
+                "f761a54ac734f790"
+            ]
+        ]
+    },
+    {
+        "id": "353096522f0f5273",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 520,
+        "y": 440,
+        "wires": [
+            [
+                "28bc208070d65015",
+                "76978234a9237f53"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "28bc208070d65015",
+        "type": "ui_gauge",
+        "z": "78a04b20ecd1bf51",
+        "name": "Angular Velocity [º/s]",
+        "group": "e3337cc83d42248b",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Angular Velocity ",
+        "label": "[º/s]",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 720,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "3328b66ceb0f6f8b",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 520,
+        "y": 80,
+        "wires": [
+            [
+                "55f7d6c653539c64",
+                "954f8f8b12646c81"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "55f7d6c653539c64",
+        "type": "ui_led",
+        "z": "78a04b20ecd1bf51",
+        "order": 1,
+        "group": "e3337cc83d42248b",
+        "width": 0,
+        "height": 0,
+        "label": "Off/On",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Off/On",
+        "x": 710,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "483e5fac0f9d754b",
+        "type": "ui_switch",
+        "z": "78a04b20ecd1bf51",
+        "name": "Off/On Switch",
+        "label": "Off/On Switch",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 140,
+        "y": 40,
+        "wires": [
+            [
+                "791b1db8d2f1381e",
+                "5c7689e9851717e4"
+            ]
+        ]
+    },
+    {
+        "id": "cf40a15fa62b1c97",
+        "type": "OpcUa-Client",
+        "z": "78a04b20ecd1bf51",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "760c3d8e4223c173"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "465f30a637530523",
+        "type": "ui_numeric",
+        "z": "78a04b20ecd1bf51",
+        "name": "Select Linear Velocity",
+        "label": "Select Linear Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "5bea2ce3b60a5c27",
+                "7fa66b0c9ff93538",
+                "3e7e0ab74ffbcc1f"
+            ]
+        ]
+    },
+    {
+        "id": "5bea2ce3b60a5c27",
+        "type": "ui_text_input",
+        "z": "78a04b20ecd1bf51",
+        "name": "Insert Linear Velocity",
+        "label": "Insert Linear Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "465f30a637530523",
+                "7fa66b0c9ff93538",
+                "3e7e0ab74ffbcc1f"
+            ]
+        ]
+    },
+    {
+        "id": "4d1538f516574064",
+        "type": "ui_numeric",
+        "z": "78a04b20ecd1bf51",
+        "name": "Select Angular Velocity",
+        "label": "Select Angular Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "7a2dfd7e4ab36120"
+            ]
+        ]
+    },
+    {
+        "id": "f761a54ac734f790",
+        "type": "ui_text_input",
+        "z": "78a04b20ecd1bf51",
+        "name": "Insert Angular Velocity",
+        "label": "Insert Angular Velocity",
+        "tooltip": "",
+        "group": "4b18d78de146df41",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "4d1538f516574064"
+            ]
+        ]
+    },
+    {
+        "id": "5c7689e9851717e4",
+        "type": "change",
+        "z": "78a04b20ecd1bf51",
+        "name": "ON global",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ON",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "27252599a6209dd2",
+        "type": "switch",
+        "z": "78a04b20ecd1bf51",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 160,
+        "wires": [
+            [
+                "3328b66ceb0f6f8b"
+            ],
+            [
+                "e5a4c5532103a9e8"
+            ]
+        ]
+    },
+    {
+        "id": "e5a4c5532103a9e8",
+        "type": "change",
+        "z": "78a04b20ecd1bf51",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 160,
+        "wires": [
+            [
+                "3328b66ceb0f6f8b"
+            ]
+        ]
+    },
+    {
+        "id": "954f8f8b12646c81",
+        "type": "debug",
+        "z": "78a04b20ecd1bf51",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "76978234a9237f53",
+        "type": "debug",
+        "z": "78a04b20ecd1bf51",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "570721bbfadb744b",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://192.168.0.102:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "4b18d78de146df41",
+        "type": "ui_group",
+        "name": "Controll",
+        "tab": "57230b28165aefd1",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e3337cc83d42248b",
+        "type": "ui_group",
+        "name": "Controll Values",
+        "tab": "57230b28165aefd1",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "57230b28165aefd1",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,403 @@
+[
+    {
+        "id": "7370796f27cee618",
+        "type": "tab",
+        "label": "Sensors",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "230508e999a8b67c",
+        "type": "OpcUa-Item",
+        "z": "7370796f27cee618",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.SWL",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Warning Sensor Left",
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "a3a8d7cc8f7cb4ea"
+            ]
+        ]
+    },
+    {
+        "id": "a3a8d7cc8f7cb4ea",
+        "type": "OpcUa-Client",
+        "z": "7370796f27cee618",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "c641ea3d63437e54",
+                "820814710d1712d7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "77a4bc95ee024105",
+        "type": "OpcUa-Item",
+        "z": "7370796f27cee618",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.SWR",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Warning Sensor Rigth",
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "457ccd2b44a9e1a2"
+            ]
+        ]
+    },
+    {
+        "id": "457ccd2b44a9e1a2",
+        "type": "OpcUa-Client",
+        "z": "7370796f27cee618",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "a530fad592b1b3d2",
+                "41777ec9d9df02ed"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0473b26b6b45f382",
+        "type": "OpcUa-Item",
+        "z": "7370796f27cee618",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.SD",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Danger Sensor",
+        "x": 360,
+        "y": 360,
+        "wires": [
+            [
+                "c0de68737411775c"
+            ]
+        ]
+    },
+    {
+        "id": "c0de68737411775c",
+        "type": "OpcUa-Client",
+        "z": "7370796f27cee618",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "Cliente",
+        "x": 640,
+        "y": 360,
+        "wires": [
+            [
+                "6d3d273f340d5a55",
+                "b1b5146735df6cb5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "25e73460c2396b65",
+        "type": "inject",
+        "z": "7370796f27cee618",
+        "name": "Inject every second",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.25",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 100,
+        "y": 280,
+        "wires": [
+            [
+                "230508e999a8b67c"
+            ]
+        ]
+    },
+    {
+        "id": "c641ea3d63437e54",
+        "type": "ui_led",
+        "z": "7370796f27cee618",
+        "order": 7,
+        "group": "4b18d78de146df41",
+        "width": 0,
+        "height": 0,
+        "label": "WSL Led",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "WSL Led",
+        "x": 860,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a530fad592b1b3d2",
+        "type": "ui_led",
+        "z": "7370796f27cee618",
+        "order": 7,
+        "group": "4b18d78de146df41",
+        "width": 0,
+        "height": 0,
+        "label": "WSR Led",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "WSR Led",
+        "x": 860,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "6d3d273f340d5a55",
+        "type": "ui_led",
+        "z": "7370796f27cee618",
+        "order": 7,
+        "group": "4b18d78de146df41",
+        "width": 0,
+        "height": 0,
+        "label": "DS Led",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "DS Led",
+        "x": 860,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "6bb8f9723a28d7f8",
+        "type": "function",
+        "z": "7370796f27cee618",
+        "name": "ColorChanger",
+        "func": "// Verificar si alguna de las condiciones es verdadera\nif (msg.WSL == true || msg.WSR == true || msg.DS == true) {\n    // Establecer Detecting a true\n    global.set(\"Detecting\", true);\n    // Reiniciar el temporizador si ya está activo\n    if (global.get(\"timerActive\")) {\n        clearTimeout(global.get(\"detectTimer\"));\n    }\n    // Establecer temporizador para volver a false después de 5 segundos\n    global.set(\"timerActive\", true);\n    global.set(\"detectTimer\", setTimeout(function () {\n        global.set(\"Detecting\", false);\n        global.set(\"timerActive\", false);\n    }, 4000));\n} else {\n    // Si no se cumple la condición, establecer Detecting a false\n    if (!global.get(\"timerActive\")) {\n        global.set(\"Detecting\", false);\n    }\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "820814710d1712d7",
+        "type": "change",
+        "z": "7370796f27cee618",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "WSL",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 180,
+        "wires": [
+            [
+                "77a4bc95ee024105"
+            ]
+        ]
+    },
+    {
+        "id": "41777ec9d9df02ed",
+        "type": "change",
+        "z": "7370796f27cee618",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "WSR",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 260,
+        "wires": [
+            [
+                "0473b26b6b45f382"
+            ]
+        ]
+    },
+    {
+        "id": "b1b5146735df6cb5",
+        "type": "change",
+        "z": "7370796f27cee618",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "DS",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 340,
+        "wires": [
+            [
+                "6bb8f9723a28d7f8"
+            ]
+        ]
+    },
+    {
+        "id": "570721bbfadb744b",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://192.168.0.102:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "4b18d78de146df41",
+        "type": "ui_group",
+        "name": "Controll",
+        "tab": "57230b28165aefd1",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "57230b28165aefd1",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

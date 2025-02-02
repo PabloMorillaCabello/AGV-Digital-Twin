@@ -1,0 +1,548 @@
+[
+    {
+        "id": "ed34b63.0ee70c8",
+        "type": "tab",
+        "label": "Odometry",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7118e1f3.a55ad",
+        "type": "function",
+        "z": "ed34b63.0ee70c8",
+        "name": "Build two cumulating random datasets",
+        "func": "// this is where you define the legend for \n// the datasets\nvar title = \"Position\";\nvar legend1 = \"InPath\";\nvar legend2 = \"OutPath\";\n// variables to be used to \nvar i, x, y, r, data1;\n// initialise the counter to 0 if it doesn't exist already\nvar data1 = flow.get('data1') ||'';\nvar data2 = flow.get('data2') ||'';\n\nvar count = flow.get('count')||0;\ncount += 1;\nif (msg.reset == true) {\n    count = 1;\n    data1 = '{x: 0,  y: 0,  r: 1},'; // Force the size of the\n    data2 = '{x: 0,  y: 0,  r: 0},'; // Force the size of the\n} \n// store the value back\nflow.set('count',count);\n// make it part of the outgoing msg object\nmsg.count = count;\n\n\nx = msg.x;\ny = msg.y;\nr = 10;\n\nif (global.get(\"Detecting\"))\n{\n    data1 += \"{x: \" + x + \", y: \" + y + \", r: \" + 0.1 + \"},\";\n    data2 += \"{x: \" + x + \", y: \" + y + \", r: \" + 7.5 + \"},\";\n}else\n{\n    data1 += \"{x: \" + x + \", y: \" + y + \", r: \" + 5 + \"},\";\n    data2 += \"{x: \" + x + \", y: \" + y + \", r: \" + 0.1 + \"},\";\n}\n\n\n//node.warn(\"db2=\"+data1);\n// this line removes the last comma to end the dataset\ndata1 = data1.replace(/^(.*),(.*?)$/, '$1')\ndata2 = data2.replace(/^(.*),(.*?)$/, '$1')\n\n// Now we build msg.payload\nmsg.payload = {\n    \"title\": title,\n    \"legend1\": legend1,\n    \"data1\": data1,\n    \"legend2\": legend2,\n    \"data2\": data2\n};\ndata1 += \",\";\ndata2 += \",\";\n\nflow.set([\"data1\", \"data2\"], [data1, data2]);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1450,
+        "y": 240,
+        "wires": [
+            [
+                "aeee9b3a.3c13a"
+            ]
+        ]
+    },
+    {
+        "id": "52f5764.47eec88",
+        "type": "inject",
+        "z": "ed34b63.0ee70c8",
+        "name": "Inject every second",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.25",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "141d3c2002d4c40f"
+            ]
+        ]
+    },
+    {
+        "id": "aeee9b3a.3c13a",
+        "type": "template",
+        "z": "ed34b63.0ee70c8",
+        "name": "Create the msg.template to use",
+        "field": "template",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<canvas id=\"bubble-chart\" width=\"1\" height=\"1\" style=\"border:1px solid #000000;\"></canvas>\n\n<script>\n  new Chart(document.getElementById(\"bubble-chart\"), {\n    type: 'bubble',\n    data: {\n      labels: \"label\",\n      datasets: [\n        {\n          label: \"{{{payload.legend1}}}\",\n          backgroundColor: \"rgba(65, 72, 255, 1.0000)\",\n          borderColor: \"#000\",\n          data: [\n            {{{payload.data1}}}\n\n          ]\n        }, {\n          label: [\"{{{payload.legend2}}}\"], \n          backgroundColor: \"rgba(255, 45, 36, 1.0000)\",\n          borderColor: \"#000\",\n          data: [\n              {{{payload.data2}}}\n\t\t  ]\n        }\n      ]\n    },\n    options: {\n        animation: false,\n        legend: {\n            display: true,\n            labels: {\n                fontColor: 'rgb(255, 99, 132)'\n            }\n        },\n    title: {\n        display: true,\n        text: '{{{payload.title}}}'\n      }, scales: {\n        yAxes: [{ \n          scaleLabel: {\n            display: true,\n            labelString: \"yAxes\"\n          }\n        }],\n        xAxes: [{ \n          scaleLabel: {\n            display: true,\n            labelString: \"xAxes\"\n          }\n        }]\n      }\n    }\n});\n\n</script>",
+        "output": "str",
+        "x": 1450,
+        "y": 300,
+        "wires": [
+            [
+                "90a482c4.75a6f"
+            ]
+        ]
+    },
+    {
+        "id": "90a482c4.75a6f",
+        "type": "ui_template",
+        "z": "ed34b63.0ee70c8",
+        "group": "b1eca7233874dd82",
+        "name": "Position Graph",
+        "order": 1,
+        "width": 10,
+        "height": 10,
+        "format": "this will be ignored",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1440,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26161552ce0a1789",
+        "type": "OpcUa-Item",
+        "z": "ed34b63.0ee70c8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.x",
+        "datatype": "Float Array",
+        "value": "",
+        "name": "X",
+        "x": 490,
+        "y": 160,
+        "wires": [
+            [
+                "d050966be1b062f4"
+            ]
+        ]
+    },
+    {
+        "id": "d050966be1b062f4",
+        "type": "OpcUa-Client",
+        "z": "ed34b63.0ee70c8",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 640,
+        "y": 160,
+        "wires": [
+            [
+                "ed39dd0cdc788ff0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "682d062c41d8f3b3",
+        "type": "OpcUa-Item",
+        "z": "ed34b63.0ee70c8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.y",
+        "datatype": "Float Array",
+        "value": "",
+        "name": "Y",
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "7b5ddb0285f4e0b4"
+            ]
+        ]
+    },
+    {
+        "id": "7b5ddb0285f4e0b4",
+        "type": "OpcUa-Client",
+        "z": "ed34b63.0ee70c8",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "ee0127772cca95b0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7626a2a544fa0509",
+        "type": "ui_button",
+        "z": "ed34b63.0ee70c8",
+        "name": "Reset Graph",
+        "group": "e6443906061477a8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset Graph",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1010,
+        "y": 200,
+        "wires": [
+            [
+                "c79f5550b74fe9a6"
+            ]
+        ]
+    },
+    {
+        "id": "c79f5550b74fe9a6",
+        "type": "change",
+        "z": "ed34b63.0ee70c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1180,
+        "y": 200,
+        "wires": [
+            [
+                "7118e1f3.a55ad"
+            ]
+        ]
+    },
+    {
+        "id": "e4a512af3423db1c",
+        "type": "ui_text",
+        "z": "ed34b63.0ee70c8",
+        "group": "e6443906061477a8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "x-coordinated",
+        "format": "{{msg.x}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1060,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2182168c78ea710a",
+        "type": "ui_text",
+        "z": "ed34b63.0ee70c8",
+        "group": "e6443906061477a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "y-coordinated",
+        "format": "{{msg.y}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1060,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "ed39dd0cdc788ff0",
+        "type": "function",
+        "z": "ed34b63.0ee70c8",
+        "name": "Adaptar",
+        "func": "var number = Number(msg.payload); // Convertir a número\nif (!isNaN(number)) {\n    msg.x = Number(number.toFixed(3)) ; // Redondear a 3 decimales\n    global.set(\"X\", msg.x);\n} else {\n    // Manejar el caso en el que msg.payload no sea un número válido\n    // Por ejemplo, asignar un valor por defecto o mostrar un mensaje de error\n    msg.x = \"NaN\"; // Por ejemplo, asignamos \"NaN\" si no es un número válido\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 160,
+        "wires": [
+            [
+                "682d062c41d8f3b3",
+                "e4a512af3423db1c"
+            ]
+        ]
+    },
+    {
+        "id": "ee0127772cca95b0",
+        "type": "function",
+        "z": "ed34b63.0ee70c8",
+        "name": "Adaptar",
+        "func": "var number = parseFloat(msg.payload); // Convertir a número\nif (!isNaN(number)) {\n    msg.y = number.toFixed(3); // Redondear a 3 decimales\n    global.set(\"Y\", msg.y);\n} else {\n    // Manejar el caso en el que msg.payload no sea un número válido\n    // Por ejemplo, asignar un valor por defecto o mostrar un mensaje de error\n    msg.y = \"NaN\"; // Por ejemplo, asignamos \"NaN\" si no es un número válido\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 200,
+        "wires": [
+            [
+                "41325bca58f1a858",
+                "2182168c78ea710a"
+            ]
+        ]
+    },
+    {
+        "id": "41325bca58f1a858",
+        "type": "OpcUa-Item",
+        "z": "ed34b63.0ee70c8",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.IOs.Alpha",
+        "datatype": "Float Array",
+        "value": "",
+        "name": "Alpha",
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "d291728e09b075b2"
+            ]
+        ]
+    },
+    {
+        "id": "d291728e09b075b2",
+        "type": "OpcUa-Client",
+        "z": "ed34b63.0ee70c8",
+        "endpoint": "570721bbfadb744b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "name": "",
+        "x": 640,
+        "y": 240,
+        "wires": [
+            [
+                "24e2d7f812d88c26"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "24e2d7f812d88c26",
+        "type": "function",
+        "z": "ed34b63.0ee70c8",
+        "name": "Adaptar",
+        "func": "var number = parseFloat(msg.payload); // Convertir a número\nif (!isNaN(number)) {\n    msg.Alpha = number; // Redondear a 3 decimales\n    msg.Alpha = msg.Alpha.toFixed(3);\n} else {\n    // Manejar el caso en el que msg.payload no sea un número válido\n    // Por ejemplo, asignar un valor por defecto o mostrar un mensaje de error\n    msg.Alpha = \"NaN\"; // Por ejemplo, asignamos \"NaN\" si no es un número válido\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 240,
+        "wires": [
+            [
+                "7118e1f3.a55ad",
+                "5e7a05cc22e3fbd4"
+            ]
+        ]
+    },
+    {
+        "id": "5e7a05cc22e3fbd4",
+        "type": "ui_text",
+        "z": "ed34b63.0ee70c8",
+        "group": "e6443906061477a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Alpha-coordinated",
+        "format": "{{msg.Alpha}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1070,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "141d3c2002d4c40f",
+        "type": "switch",
+        "z": "ed34b63.0ee70c8",
+        "name": "",
+        "property": "ON",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "26161552ce0a1789"
+            ]
+        ]
+    },
+    {
+        "id": "fd0270b211744407",
+        "type": "ui_button",
+        "z": "ed34b63.0ee70c8",
+        "name": "Actual Position",
+        "group": "e6443906061477a8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Actual Position",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "str",
+        "x": 300,
+        "y": 160,
+        "wires": [
+            [
+                "26161552ce0a1789"
+            ]
+        ]
+    },
+    {
+        "id": "d5970851017adc96",
+        "type": "ui_ui_control",
+        "z": "ed34b63.0ee70c8",
+        "name": "",
+        "events": "change",
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "f9dff8cec8a12859"
+            ]
+        ]
+    },
+    {
+        "id": "f9dff8cec8a12859",
+        "type": "delay",
+        "z": "ed34b63.0ee70c8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0.05",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 120,
+        "wires": [
+            [
+                "26161552ce0a1789"
+            ]
+        ]
+    },
+    {
+        "id": "b1eca7233874dd82",
+        "type": "ui_group",
+        "name": "Position",
+        "tab": "194a07bc7a1ad9a4",
+        "order": 1,
+        "disp": true,
+        "width": 10,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "570721bbfadb744b",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://192.168.0.102:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "e6443906061477a8",
+        "type": "ui_group",
+        "name": "Coordinates",
+        "tab": "194a07bc7a1ad9a4",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "194a07bc7a1ad9a4",
+        "type": "ui_tab",
+        "name": "Position",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]
