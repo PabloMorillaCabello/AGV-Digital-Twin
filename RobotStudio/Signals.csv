@@ -1,0 +1,9 @@
+NamespaceUri;IdentifierType;Identifier;ReadWrite;Signal;SignalType;Controller;Device
+CODESYSSPV3/3S/IecVarAccess;String;|var|CODESYS Control Win V3 x64.Application.IOs.SD;Write;SD;Digital;;
+CODESYSSPV3/3S/IecVarAccess;String;|var|CODESYS Control Win V3 x64.Application.IOs.SWL;Write;SWL;Digital;;
+CODESYSSPV3/3S/IecVarAccess;String;|var|CODESYS Control Win V3 x64.Application.IOs.SWR;Write;SWR;Digital;;
+CODESYSSPV3/3S/IecVarAccess;String;|var|CODESYS Control Win V3 x64.Application.IOs.AngularVelocity;Read;AngularVelocity;Analog;;
+CODESYSSPV3/3S/IecVarAccess;String;|var|CODESYS Control Win V3 x64.Application.IOs.LinearVelocity;Read;LinearVelocity;Analog;;
+CODESYSSPV3/3S/IecVarAccess;String;|var|CODESYS Control Win V3 x64.Application.IOs.x;Write;x;Analog;;
+CODESYSSPV3/3S/IecVarAccess;String;|var|CODESYS Control Win V3 x64.Application.IOs.y;Write;y;Analog;;
+CODESYSSPV3/3S/IecVarAccess;String;|var|CODESYS Control Win V3 x64.Application.IOs.Alpha;Write;Alpha;Analog;;
